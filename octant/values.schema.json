@@ -1,0 +1,35 @@
+{
+  "$schema": "http://json-schema.org/schema#",
+  "type": "object",
+  "properties": {
+    "ingress": {
+      "type": "object",
+      "form": true,
+      "title": "Ingress details",
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "form": true,
+          "title": "Use a custom hostname",
+          "description": "Enable the ingress resource that allows you to access the NGINX installation."
+        },
+        "hosts": {
+          "type": "array",
+          "form": true,
+          "title": "Hostname",
+          "hidden": {
+            "value": false,
+            "path": "ingress/enabled"
+          },
+          "properties": {
+            "host": {
+              "type": "string",
+              "form": true,
+              "title": "ingress 網址"
+            }
+          }
+        }
+      }
+    }
+  }
+}

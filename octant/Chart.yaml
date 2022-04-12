@@ -1,0 +1,6 @@
+apiVersion: v2
+appVersion: 0.9
+description: A Helm chart to deploy Octant (vmware-tanzu/octant) to Kubernetes
+name: octant
+type: application
+version: 0.9
