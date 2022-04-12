@@ -20,13 +20,13 @@ Pods 建立:
 
 ## Architecture wordpress
 
-![](images\2022-04-07-11-57-58-image.png)
+![](images/2022-04-07-11-57-58-image.png)
 
-![](images\2022-04-07-12-54-53-image.png)
+![](images/2022-04-07-12-54-53-image.png)
 
 ### 將 kubeconfig 放在對的位置
 
-+ kubeconfig 找 harry 拿
++ [kubeconfig](./user-config) 選自己的, 別拿別人的喔!!
 
 ```
 # https://kubernetes.io/docs/tasks/tools/
