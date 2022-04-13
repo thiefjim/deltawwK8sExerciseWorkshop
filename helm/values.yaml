@@ -67,7 +67,7 @@ diagnosticMode:
 ## @param image.debug Specify if debug values should be set
 ##
 image:
-  registry: docker.io
+  registry: e4e-harbor.deltaww.com/docker-hub
   repository: bitnami/wordpress
   tag: 5.9.3-debian-10-r0
   ## Specify a imagePullPolicy
@@ -710,7 +710,7 @@ volumePermissions:
   ## @param volumePermissions.image.pullSecrets Bitnami Shell image pull secrets
   ##
   image:
-    registry: docker.io
+    registry: e4e-harbor.deltaww.com/docker-hub
     repository: bitnami/bitnami-shell
     tag: 10-debian-10-r386
     pullPolicy: IfNotPresent
