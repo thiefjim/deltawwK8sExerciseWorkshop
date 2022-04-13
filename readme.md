@@ -184,7 +184,7 @@ kubectl get po -n nginx
 + 設定 limits 來限制pod的資源, 並透過 replics 來增加pod數量達到擴增能量
 
 ```
-kubectl run oom-killer --image=harryliu123/oom-killer:latest --limits memory=50Mi --restart=Never 
+kubectl run oom-killer --image=e4e-harbor.deltaww.com/docker-hub/harryliu123/oom-killer:latest --limits memory=50Mi --restart=Never 
 ```
 
 ![](images/2022-04-11-15-50-03-image.png)
