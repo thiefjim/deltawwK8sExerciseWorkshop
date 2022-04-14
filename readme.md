@@ -35,24 +35,9 @@ curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stabl
 mv kubeconfig ~/.kube/config
 ```
 
+## Example 1:
+
 ### install wordpress
-
-#### yaml install
-
-```bash
-## 修改網址
-sed -i 's/harry.10.136.152.227.nip.io/xxx.10.136.152.227.nip.io/g' yaml/7_wordpress-ingress.yaml
-## 安裝
-kubectl --namespace wordpress apply -f yaml/
-## 查看  
-kubectl get all,pvc,ingress -n wordpress
-
-## 在瀏覽器上
-http://xxx.10.136.152.227.nip.io
-
-## 清除
-kubectl --namespace wordpress delete -f yaml/
-```
 
 #### helm install
 
@@ -81,8 +66,24 @@ kubectl get all,pvc,ingress -n wordpress
 http://xxx.10.136.152.227.nip.io
 
 ##清理
-# helm delete wordpress -n wordpress
+helm delete wordpress -n wordpress
 ```
+
+#### yaml install
+
+```bash
+## 修改網址
+sed -i 's/harry.10.136.152.227.nip.io/xxx.10.136.152.227.nip.io/g' yaml/7_wordpress-ingress.yaml
+## 安裝
+kubectl --namespace wordpress apply -f yaml/
+## 查看  
+kubectl get all,pvc,ingress -n wordpress
+
+## 在瀏覽器上
+http://xxx.10.136.152.227.nip.io
+```
+
+## Example 2:
 
 ### install UI Tools
 
@@ -97,9 +98,18 @@ helm install octant octant/ --set "ingress.hosts[0].host=octant-harry.10.136.152
 
 + xxx.10.136.152.227.nip.io
 
-+ [Kubernetes Deployment Builder](https://harryliu123.github.io/deployment/)
+#### 清除 wordpress 節省資源
+
+```
+## 清除 因為共用資源有限, 節省資源請各位幫忙清除
+# kubectl --namespace wordpress delete -f yaml/
+```
+
+## Example 3:
 
 ### 試看看透過 Kubernetes Deployment Builder 建立一個nginx 服務
+
++ [Kubernetes Deployment Builder](https://harryliu123.github.io/deployment/)
 
 ```
 cat <<EOF | kubectl --kubeconfig kubeconfig.yaml apply -f -
@@ -177,14 +187,25 @@ kubectl scale --replicas=4 deployment nginx-deploy -n nginx
 kubectl get po -n nginx
 ```
 
-## OOM
+## Example 4:
+
+### OOM
 
 + 體驗一下 OOM , pod 會被k8s 給停止
 
 + 設定 limits 來限制pod的資源, 並透過 replics 來增加pod數量達到擴增能量
 
++ harryliu123/oom-killer 執行一隻 python 內容為: 每一段時間約1秒 記憶體增加1M
+
 ```
 kubectl run oom-killer --image=e4e-harbor.deltaww.com/docker-hub/harryliu123/oom-killer:latest --limits memory=50Mi --restart=Never 
 ```
 
+從監控上看到的圖
+
 ![](images/2022-04-11-15-50-03-image.png)
+
+```
+watch kubectl get po
+## 觀察 過一段時間後會oom-killer的狀態
+```
