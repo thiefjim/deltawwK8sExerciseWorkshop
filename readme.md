@@ -187,6 +187,9 @@ kubectl scale --replicas=4 deployment nginx-deploy -n nginx
 kubectl get po -n nginx
 ```
 
+### 提早結束的同仁可以觀察
++ ./yaml 下剛剛佈署 wordpress的yaml檔案
+
 ## Example 4:
 
 ### OOM
